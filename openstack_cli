@@ -1,0 +1,33 @@
+How to use the OpenStack CLI tools on Mac OS X
+
+How to use the OpenStack Command Line Interface (CLI) tools on Mac OS X.
+For example, you will learn how to list your instances and volumes by using the CLI. You will also learn how you can launch a new instance by using the CLI.
+
+Step 1 - Installing Python 3
+# If you want to use the Dockerfile (explained in step 3), you can omit this step.
+
+The OpenStack command line tools need Python
+
+Using Homebrew
+
+To install homebrew you can visit https://docs.brew.sh/Installation
+or use the following command lines:
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+(or not checked -> $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"?)
+
+Using brew to install Python3
+$ brew install python
+
+Using a binary
+Install a stable Python binary from Python.org downloads
+
+
+Installing the OpenStack command line tools
+Now Python3 is installed you can install the OpenStack command line tools:
+
+$ pip3 install python-openstackclient
+
+
+Step 2 - Install the configuration file
+Now, follow the steps below to install the configuration files depends on CSP (Cloud Solution Provider)
