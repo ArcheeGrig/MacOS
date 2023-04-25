@@ -3,7 +3,7 @@
 How to use the OpenStack Command Line Interface (CLI) tools on Mac OS X.
 For example, you will learn how to list your instances and volumes by using the CLI. You will also learn how you can launch a new instance by using the CLI.
 
-Step 1 - Installing Python 3
+Step 1 - Installing Python 3 
 # If you want to use the Dockerfile (explained in step 3), you can omit this step.
 
 The OpenStack command line tools need Python
@@ -31,3 +31,31 @@ $ pip3 install python-openstackclient
 
 Step 2 - Install the configuration file
 Now, follow the steps below to install the configuration files depends on CSP (Cloud Solution Provider)
+Don't forget to create OpenStack API Credentials (Remember to save the password in a safe place)
+
+??? Using the Dockerfile 
+save this file to the folder where your project resides
+
+Build the Docker container
+$ docker build -t openstackcli --build-arg OS_PASSWORD=<$PASSWORD> - < <$PROJECT_DIR>/Dockerfile
+Where <$PASSWORD> is used fill in the password of your OpenStack API Credentials and instead of <$PROJECT_DIR> you fill the directory where your project resides on your disk.
+
+Run the interactive CLI
+
+$ docker run -it --rm openstackcli
+--rm openstackcli removes the container when you close it. This way your system doesn’t get cluttered with unused containers. You can check this with:
+
+$ docker ps --all
+If you want to exit the environment, use:
+
+$ exit
+
+
+
+Using the OpenRC file
+Download and save openrc.sh file to the folder on the machine where you have installed the OpenStack CLI clients.
+Go to the location where you have saved the openrc.sh file.
+Run the following command:
+source openrc.sh
+Enter your OpenStack API Credentials password
+
