@@ -3,32 +3,65 @@
 How to use the OpenStack Command Line Interface (CLI) tools on Mac OS X.
 For example, you will learn how to list your instances and volumes by using the CLI. You will also learn how you can launch a new instance by using the CLI.
 
-Step 1 - Installing Python 3 
-# If you want to use the Dockerfile (explained in step 3), you can omit this step.
-
+Step 1 - Installing Python 3 (w/o Dockerfile)
 The OpenStack command line tools need Python
 
-Using Homebrew
+    1.1) Install -> Homebrew
+  
+    To install homebrew you can visit https://docs.brew.sh/Installation or use the following command lines:
+    $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-To install homebrew you can visit https://docs.brew.sh/Installation
-or use the following command lines:
-$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    (or not checked -> $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"?)
 
-(or not checked -> $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"?)
+    1.2) Install -> Python3
+     - Using brew to install Python3
+       $ brew install python
 
-Using brew to install Python3
-$ brew install python
-
-Using a binary
-Install a stable Python binary from Python.org downloads
-
-
-Installing the OpenStack command line tools
-Now Python3 is installed you can install the OpenStack command line tools:
-
-$ pip3 install python-openstackclient
+     - Using a binary
+      Install a stable Python binary from Python.org downloads
 
 
+Step 2 - Installing the OpenStack command line tools
+
+    2.1) Install -> OpenStack command line (CLI):
+    
+    $ pip3 install python-openstackclient
+
+    2.2) Install the OpenStack clients¶
+    The following example shows the command for installing the OpenStack client with pip, which supports multiple services.
+
+    # pip install python-openstackclient
+    
+    The following individual clients are deprecated in favor of a common client. Instead of installing and learning all these clients, recommend installing and using the OpenStack client.
+    You may need to install an individual project’s client because coverage is not yet sufficient in the OpenStack client. 
+    If you need to install an individual client’s project, replace the <PROJECT> name in this pip install command using the list below.
+
+    # pip install python-<PROJECT>client
+    barbican - Key Manager Service API
+    ceilometer - Telemetry API
+    cinder - Block Storage API and extensions
+    cloudkitty - Rating service API
+    designate - DNS service API
+    fuel - Deployment service API
+    glance - Image service API
+    gnocchi - Telemetry API v3
+    heat - Orchestration API
+    keystone - Identity service API and extensions
+    magnum - Containers service API
+    manila - Shared file systems API
+    mistral - Workflow service API
+    monasca - Monitoring API
+    murano - Application catalog API
+    neutron - Networking API
+    nova - Compute API and extensions
+    sahara - Data Processing API
+    senlin - Clustering service API
+    swift - Object Storage API
+    trove - Database service API
+    While you can install the keystone client for interacting with version 2.0 of the service’s API, you should use the openstack client for all Identity interactions. Identity API v2 is deprecated in the Mitaka release.
+
+
+################
 Step 2 - Install the configuration file
 Now, follow the steps below to install the configuration files depends on CSP (Cloud Solution Provider)
 Don't forget to create OpenStack API Credentials (Remember to save the password in a safe place)
