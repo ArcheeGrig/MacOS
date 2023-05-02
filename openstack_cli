@@ -1,4 +1,4 @@
-- How to use the OpenStack CLI tools on Mac OS X
+- How to use the OpenStack CLI tools on Mac OS X (https://docs.openstack.org/mitaka/user-guide/common/cli_install_openstack_command_line_clients.html)
 
 How to use the OpenStack Command Line Interface (CLI) tools on Mac OS X.
 For example, you will learn how to list your instances and volumes by using the CLI. You will also learn how you can launch a new instance by using the CLI.
