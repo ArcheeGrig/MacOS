@@ -43,6 +43,8 @@ By default, TFTP folder is /private/tftpboot - feel free to use other folder. Ho
 # chmod whole folder to 777
 sudo chmod -R 777 /private/tftpboot
 
+sudo chmod 777 /private/tftpboot/*
+
 # add a file and also chmod 777
 cp fw.bin /private/tftpboot
 chmod 777 /private/tftpboot/fw.bin
@@ -51,10 +53,39 @@ chmod 777 /private/tftpboot/fw.bin
 
 Start and Stop daemon
 Start daemon:
-
-sudo launchctl load -F /System/Library/LaunchDaemons/tftp.plist
+  # sudo launchctl load -F /System/Library/LaunchDaemons/tftp.plist
 Stop daemon:
+  # sudo launchctl unload /System/Library/LaunchDaemons/tftp.plist
 
-sudo launchctl unload /System/Library/LaunchDaemons/tftp.plist
+Подгружаем tftp.plist:
+ # sudo launchctl load -F /System/Library/LaunchDaemons/tftp.plist
+Запускаем tftp-сервер:
+ # sudo launchctl start com.apple.tftpd 
+Остановка tftp-сервера:
+ # sudo launchctl stop com.apple.tftpd 
+Открываем папку: 
+ # open /private/tftpboot 
 
 
+
+
+
+By default tftpd uses the following folder:
+   /private/tftpboot
+
+which is hidden in finder, but can be accessed by using “go to folder” or hitting Command+Shift+G and entering /private/tftpboot
+
+   sudo launchctl load -F /System/Library/LaunchDaemons/tftp.plist
+
+sudo launchctl start com.apple.tftpd
+Be sure Read/Write/eXecute permissions are set on the tftpboot folder and any files you wish to transfer:
+   sudo chmod 777 /private/tftpboot
+   sudo chmod 777 /private/tftpboot/*
+
+If you’ll be transferring a file TO your TFTP server, the file will technically need to exist on the server beforehand so create it with touch. For example:
+   
+   sudo touch /private/tftpboot/running-config
+   sudo chmod 777 /private/tftpboot/running-config
+
+To unload and shutdown your tftp daemon you can run the following command.
+   sudo launchctl unload -F /System/Library/LaunchDaemons/tftp.plist
