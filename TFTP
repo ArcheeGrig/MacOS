@@ -1,0 +1,60 @@
+macOS has built in TFTP daemon
+Daemon location: /System/Library/LaunchDaemons/tftp.plist
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Disabled</key>
+	<true/>
+	<key>Label</key>
+	<string>com.apple.tftpd</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/libexec/tftpd</string>
+		<string>-i</string>
+		<string>/private/tftpboot</string>
+	</array>
+	<key>inetdCompatibility</key>
+	<dict>
+		<key>Wait</key>
+		<true/>
+	</dict>
+	<key>InitGroups</key>
+	<true/>
+	<key>Sockets</key>
+	<dict>
+		<key>Listeners</key>
+		<dict>
+			<key>SockServiceName</key>
+			<string>tftp</string>
+			<key>SockType</key>
+			<string>dgram</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
+
+
+Modify TFTP service parameters
+By default, TFTP folder is /private/tftpboot - feel free to use other folder. However, remember to chmod whole folder or added files with correct permission, else TFTP client can't get that file.
+
+```
+# chmod whole folder to 777
+sudo chmod -R 777 /private/tftpboot
+
+# add a file and also chmod 777
+cp fw.bin /private/tftpboot
+chmod 777 /private/tftpboot/fw.bin
+```
+
+
+Start and Stop daemon
+Start daemon:
+
+sudo launchctl load -F /System/Library/LaunchDaemons/tftp.plist
+Stop daemon:
+
+sudo launchctl unload /System/Library/LaunchDaemons/tftp.plist
+
+
